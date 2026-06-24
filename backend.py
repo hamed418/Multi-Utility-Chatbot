@@ -8,6 +8,7 @@ from typing import Annotated, Any, Dict, Optional, TypedDict
 from dotenv import load_dotenv
 from langchain_text_splitters.character import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
+import duckduckgo_search
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.vectorstores import FAISS
 from langchain_core.messages import BaseMessage, SystemMessage, ToolMessage
