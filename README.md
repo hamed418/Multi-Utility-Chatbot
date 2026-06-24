@@ -23,7 +23,7 @@ PDF question answering, web search, stock prices, and calculations.
 ## How to Run
 
 1. Clone the repository
-git clone https://github.com/hamed418/Chatbot.git
+git clone https://github.com/hamed418/Multi-Utility-Chatbot.git
 
 2. Install dependencies
 pip install -r requirements.txt
