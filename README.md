@@ -14,7 +14,7 @@ PDF question answering, web search, stock prices, and calculations.
 ## Tech Stack
 - LangGraph — agent graph and state management
 - LangChain — LLM and tool abstractions  
-- Groq (llama-3.3-70b) — LLM
+- Groq (openai/gpt-oss-120b) — LLM
 - FAISS — vector store for PDF embeddings
 - Jina Embeddings — text to vector conversion
 - SQLite — conversation memory
@@ -23,7 +23,7 @@ PDF question answering, web search, stock prices, and calculations.
 ## How to Run
 
 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git clone https://github.com/hamed418/Chatbot.git
 
 2. Install dependencies
 pip install -r requirements.txt
