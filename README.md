@@ -35,7 +35,7 @@ JINA_API_KEY=your_key
 ALPHA_VANTAGE_API_KEY=your_key
 
 4. Run the app
-streamlit run streamlit_rag_frontend_5.py
+streamlit run app.py
 
 ## Architecture
 User Input → Streamlit Frontend
