@@ -8,7 +8,7 @@ from typing import Annotated, Any, Dict, Optional, TypedDict
 from dotenv import load_dotenv
 from langchain_text_splitters.character import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-import duckduckgo_search
+from langchain_tavily.tavily_search import TavilySearch
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.vectorstores import FAISS
 from langchain_core.messages import BaseMessage, SystemMessage, ToolMessage
@@ -16,6 +16,8 @@ from langchain_core.tools import tool
 from langchain_groq import ChatGroq
 from langchain_community.embeddings.jina import JinaEmbeddings
 from langgraph.checkpoint.sqlite import SqliteSaver
+from langchain_core.prompts import ChatPromptTemplate
+from pydantic import BaseModel,Field
 from langgraph.graph import START, StateGraph,END
 # this is a reducer to add messages into a list used in State in langgraph 
 from langgraph.graph.message import add_messages
@@ -122,11 +124,29 @@ def ingest_pdf(file_bytes: bytes, thread_id: str, filename: Optional[str] = None
         except OSError:
             pass
  
- 
 
-# 3. Tools
 
-search_tool = DuckDuckGoSearchRun(region="us-en")
+@tool
+def tavily_search(query: str) -> list:
+    """Search the internet for relevant and up-to-date information.
+    
+    Use this tool when you need current facts, news, events, or real-time data.
+    Input should be a clear and effective search query."""
+
+    # Tavily search
+    tavily = TavilySearch(max_results=1)
+    search_results = tavily.invoke({"query": query})
+
+    store = []
+    for i in search_results.get("results", []):
+        store.append({
+            "Title": i.get("title", ""),
+            "Content": i.get("content", ""),
+            "URL": i.get("url", "")
+        })
+
+    return store
+
  
  
 @tool
@@ -206,7 +226,8 @@ def make_rag_tool(thread_id: str):
  
  
 # Base tools (no rag_tool here — it's added per-node with the right thread_id)
-base_tools = [search_tool, get_stock_price, calculator]
+
+base_tools = [tavily_search, get_stock_price, calculator]
  
 
 # 4. State
