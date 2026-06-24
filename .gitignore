@@ -1,0 +1,24 @@
+# API keys and secrets — never upload these
+.env
+
+# Personal chat history database
+chatbot.db
+chatbot.db-shm
+chatbot.db-wal
+
+# Virtual environment — too large and not needed
+myenv/
+.venv/
+venv/
+
+# Python auto-generated cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Streamlit secrets — has your API keys
+.streamlit/secrets.toml
+
+# Windows junk files
+Thumbs.db
+desktop.ini
