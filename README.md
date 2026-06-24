@@ -14,7 +14,7 @@ PDF question answering, web search, stock prices, and calculations.
 ## Tech Stack
 - LangGraph — agent graph and state management
 - LangChain — LLM and tool abstractions  
-- Groq (llama-3.3-70b) — LLM
+- Groq (openai/gpt-oss-120b) — LLM
 - FAISS — vector store for PDF embeddings
 - Jina Embeddings — text to vector conversion
 - SQLite — conversation memory
